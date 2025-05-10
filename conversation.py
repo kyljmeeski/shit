@@ -18,10 +18,13 @@ class Conversation:
         reasonability = phrase.reasonability()
         methodicalness = phrase.methodicalness()
         if phrase.fraudulence() < threshold:
+            print("Phrase is clear")
             return
         if reasonability > methodicalness:
+            print("Phrase is a REASON")  # TODO
             self.__reasons.append(text)
         elif methodicalness > reasonability:
+            print("Phrase is a METHOD")  # TODO
             self.__methods.append(text)
 
     def scam_phrases(self) -> List[str]:
@@ -40,6 +43,8 @@ class Conversations:
         self.__all = []
 
     def analyze(self, phone: str, phrase: str) -> List[str]:
+        print(phone + " : " + phrase)  # TODO
+
         for item in self.__all:
             if item.phone() == phone:
                 conversation = item
@@ -52,6 +57,9 @@ class Conversations:
 
         scam_phrases = conversation.scam_phrases()
         if len(scam_phrases) != 0:
+            print("Conversation is fraudulence")  # TODO
             self.__all.remove(conversation)
+        else:
+            print("Conversation is clear so far")  # TODO
 
         return scam_phrases
