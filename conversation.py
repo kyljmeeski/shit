@@ -1,3 +1,4 @@
+import logging
 from typing import List
 
 from common import threshold
@@ -21,10 +22,10 @@ class Conversation:
             print("Phrase is clear")
             return
         if reasonability > methodicalness:
-            print("Phrase is a REASON")  # TODO
+            logging.debug("Phrase is a REASON")
             self.__reasons.append(text)
         elif methodicalness > reasonability:
-            print("Phrase is a METHOD")  # TODO
+            logging.debug("Phrase is a METHOD")
             self.__methods.append(text)
 
     def scam_phrases(self) -> List[str]:
@@ -43,7 +44,7 @@ class Conversations:
         self.__all = []
 
     def analyze(self, phone: str, phrase: str) -> List[str]:
-        print(phone + " : " + phrase)  # TODO
+        logging.debug(phone + " : " + phrase)
 
         for item in self.__all:
             if item.phone() == phone:
@@ -57,9 +58,9 @@ class Conversations:
 
         scam_phrases = conversation.scam_phrases()
         if len(scam_phrases) != 0:
-            print("Conversation is fraudulence")  # TODO
+            logging.debug("Conversation is fraudulence")
             self.__all.remove(conversation)
         else:
-            print("Conversation is clear so far")  # TODO
+            logging.debug("Conversation is clear so far")
 
         return scam_phrases
