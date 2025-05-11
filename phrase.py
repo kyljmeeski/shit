@@ -1,6 +1,6 @@
 import spacy
 
-from common import threshold
+from common import threshold, logger
 from setup import MODEL_PATH
 from signatures import get_reason_signatures, get_method_signatures
 
@@ -22,6 +22,7 @@ class Phrase:
 
             for signature in signatures:
                 similarity = compare(self.__text, signature)
+                logger.debug(signature + " : " + str(similarity))
                 if similarity > max_similarity:
                     max_similarity = similarity
                     best_hit = signature
@@ -38,6 +39,7 @@ class Phrase:
 
             for signature in signatures:
                 similarity = compare(self.__text, signature)
+                logger.debug(signature + " : " + str(similarity))
                 if similarity > max_similarity:
                     max_similarity = similarity
                     best_hit = signature
@@ -52,4 +54,8 @@ class Phrase:
 
 
 if __name__ == "__main__":
-    print(compare("звонок из банка", "вас беспокоит ваш банк"))
+    # phrase = Phrase("здравствуйте")
+    # print(phrase.methodicalness())
+    # print(compare("здравстуйте", "назовите ваш паспортный номер"))
+    # print(compare("здравствуйте", "назовите ваш паспортный номер"))
+    print(compare("здравстуйте", "здравстуйте"))
