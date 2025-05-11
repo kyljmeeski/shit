@@ -4,6 +4,8 @@ from typing import List
 from common import threshold
 from phrase import Phrase
 
+logging.basicConfig(level=logging.DEBUG)
+
 
 class Conversation:
     def __init__(self, phone: str):
