@@ -1,10 +1,11 @@
+import os
+
 import spacy
 
 from common import threshold, logger
-from setup import MODEL_PATH
 from signatures import get_reason_signatures, get_method_signatures
 
-nlp = spacy.load(MODEL_PATH)
+nlp = spacy.load(os.path.join("..", "model"))
 
 
 def compare(left: str, right: str) -> float:

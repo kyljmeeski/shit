@@ -1,7 +1,8 @@
 import json
+import os
 from typing import List, Dict
 
-JSON_PATH = "signatures.json"
+JSON_PATH = os.path.join("resources", "signatures.json")
 
 
 def read_file() -> dict:
