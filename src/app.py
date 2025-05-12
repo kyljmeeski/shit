@@ -9,14 +9,36 @@ app = Flask(__name__)
 
 conversations = Conversations()
 
+scammers = []  # list of phone numbers of scammers
+
+def check_phone() -> bool:
+    """
+    Checks if the phone is in the list of scammers.
+    Returns True if the phone is in the list of scammers, False otherwise.
+    """
+
+    phone = request.args.get("phone")
+    return phone in scammers
+
 
 @app.route("/analyze", methods=["POST"])
-def home() -> List[str]:
+def analyze() -> List[str]:
+    """
+    Analyzes the phrase of the caller.
+    Holds the information about the whole conversation based on the phone number of the caller.
+    Returns the list of scam phrases in the conversation so far.
+    If there are scam phrases, saves the phone number of the caller in the list of the scammers.
+    """
+
     data = request.get_json()
     phone = data.get("phone")
     phrase = data.get("phrase")
 
-    return conversations.analyze(phone, phrase)
+    scam_phrases = conversations.analyze(phone, phrase)
+    if len(scam_phrases) > 0:
+        scammers.append(phone)
+
+    return scam_phrases
 
 
 if __name__ == "__main__":
