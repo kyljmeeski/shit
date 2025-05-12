@@ -5,7 +5,8 @@ import spacy
 from common import threshold, logger
 from signatures import get_reason_signatures, get_method_signatures
 
-nlp = spacy.load(os.path.join("..", "model"))
+model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "model"))
+nlp = spacy.load(model_path)
 
 
 def compare(left: str, right: str) -> float:
