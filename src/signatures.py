@@ -2,7 +2,8 @@ import json
 import os
 from typing import List, Dict
 
-JSON_PATH = os.path.join("resources", "signatures.json")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+JSON_PATH = os.path.join(BASE_DIR, "resources", "signatures.json")
 
 
 def read_file() -> dict:
