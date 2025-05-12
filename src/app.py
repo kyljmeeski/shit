@@ -3,6 +3,7 @@ from typing import List
 from flask import Flask, request
 
 from conversation import Conversations
+from common import logger
 
 app = Flask(__name__)
 
@@ -18,6 +19,10 @@ def check_phone() -> bool:
     """
 
     phone = request.args.get("phone")
+
+    logger.debug("Checking phone : " + phone)
+    logger.debug(scammers)
+
     return phone in scammers
 
 
