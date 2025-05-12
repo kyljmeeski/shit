@@ -1,3 +1,4 @@
+import json
 from typing import List
 
 from flask import Flask, request
@@ -12,18 +13,19 @@ conversations = Conversations()
 
 scammers = []  # list of phone numbers of scammers
 
-def check_phone() -> bool:
+@app.route("/check", methods=["POST"])
+def check_phone() -> str:
     """
     Checks if the phone is in the list of scammers.
     Returns True if the phone is in the list of scammers, False otherwise.
     """
 
-    phone = request.args.get("phone")
+    phone = request.get_json().get("phone")
 
     logger.debug("Checking phone : " + phone)
     logger.debug(scammers)
 
-    return phone in scammers
+    return json.dumps(phone in scammers)
 
 
 @app.route("/analyze", methods=["POST"])
