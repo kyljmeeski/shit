@@ -60,4 +60,4 @@ if __name__ == "__main__":
     # print(phrase.methodicalness())
     # print(compare("здравстуйте", "назовите ваш паспортный номер"))
     # print(compare("здравствуйте", "назовите ваш паспортный номер"))
-    print(compare("здравстуйте", "здравстуйте"))
+    print(compare("счет", "счёт"))
