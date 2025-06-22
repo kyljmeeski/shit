@@ -1,7 +1,7 @@
 import json
 from typing import List
 
-from flask import Flask, request
+from flask import Flask, request, jsonify, Response
 
 from conversation import Conversations
 from common import logger
@@ -14,8 +14,8 @@ conversations = Conversations()
 scammers = []  # list of phone numbers of scammers
 
 @app.route("/scammers", methods=["GET"])
-def get_scammers() -> str:
-    return json.dumps(scammers)
+def get_scammers() -> Response:
+    return jsonify(scammers)
 
 
 @app.route("/scammers", methods=["DELETE"])
