@@ -13,6 +13,19 @@ conversations = Conversations()
 
 scammers = []  # list of phone numbers of scammers
 
+@app.route("/scammers", methods=["GET"])
+def get_scammers() -> str:
+    return json.dumps(scammers)
+
+
+@app.route("/scammers", methods=["DELETE"])
+def delete_scammer():
+    phone = request.get_json()["phone"]
+
+    logger.debug("Deleting phone: " + phone)
+    scammers.remove(phone)
+
+
 @app.route("/check", methods=["POST"])
 def check_phone() -> str:
     """
